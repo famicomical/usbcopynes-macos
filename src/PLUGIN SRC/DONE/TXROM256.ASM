@@ -104,7 +104,7 @@ mirrord:     lda #01h
 got_mir:     txa
              jsr send_byte
              
-             lda #010h       ;forced 256K PRG (16 -> lsr -> 8 x 32K)
+             lda #008h       ;forced 256K PRG (8 -> lsr -> 4 x 64K = 32 x 8K)
              sta romsiz
 
 gotit:       lsr romsiz
