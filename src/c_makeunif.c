@@ -28,7 +28,7 @@ BOOL	CMD_MAKEUNIF (void)
 
 	i = strlen(filepath);
 	while (i > 0)
-		if (filepath[--i] == '\\')
+		if (filepath[--i] == PATHSEP)
 		{
 			filepath[++i] = 0;
 			break;

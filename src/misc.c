@@ -66,7 +66,7 @@ void	WriteUNIF (char *basename, char *board, int battery, int mirror, int foursc
 	PromptTitle = "0:joypad, 1:zapper, 2:ROB, 3:Arkanoid, 4:PowerPad, 5:FourScore\n\nEnter controllers used, separated w/spaces (e.g. 0 1 5)\n";
 	if (Prompt(topHWnd))
 	{
-		unsigned int i, n, ctype;
+		unsigned int i, n, ctype = 0;
 		n = strlen(PromptResult);
 		PromptResult[n+1] = 0;
 		PromptResult[n+1] = ' ';

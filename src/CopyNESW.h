@@ -4,6 +4,12 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+#ifdef _WIN32
+#define PATHSEP '\\'
+#else
+#define PATHSEP '/'
+#endif
+
 extern	HINSTANCE hInst;
 extern	HWND	topHWnd;
 

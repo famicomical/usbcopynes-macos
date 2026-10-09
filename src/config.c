@@ -41,9 +41,9 @@ char *	_relpath (char *abspath, char *basepath)
 char *	addSlash (char *path)
 {
 	int x = strlen(path);
-	if (path[x-1] == '\\')
+	if (path[x-1] == PATHSEP)
 		return path;
-	path[x] = '\\';
+	path[x] = PATHSEP;
 	path[x+1] = 0;
 	return path;
 }
@@ -54,7 +54,7 @@ void	GetProgPath (void)
 	GetModuleFileName(NULL,Path_MAIN,MAX_PATH);
 	i = strlen(Path_MAIN);
 	while (i > 0)
-		if (Path_MAIN[--i] == '\\')
+		if (Path_MAIN[--i] == PATHSEP)
 		{
 			Path_MAIN[++i] = 0;
 			return;
@@ -211,7 +211,7 @@ static	void	trim (char *str)
 	int i;
 	for (i = strlen(str) - 1; i >= 0; i--)
 	{
-		if (str[i] == ' ')
+		if (str[i] == ' ' || str[i] == '\r')
 			str[i] = 0;
 		else	break;
 	}
@@ -313,7 +313,7 @@ BOOL	Startup	(void)
 	C2 = (char*)malloc(col2 - col1 + 1);	C2[col2 - col1] = 0;
 	C3 = (char*)malloc(col3 - col2 + 1);	C3[col3 - col2] = 0;
 	C4 = (char*)malloc(col4 - col3 + 1);	C4[col4 - col3] = 0;
-	Data = (char*)malloc(col4);
+	Data = (char*)malloc(1024);	// lines run past col4 (trailing spaces, CR)
 
 	// step 2 - read in the list
 	while (!feof(PlugList))

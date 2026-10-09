@@ -12,3 +12,9 @@ src/PLUGIN SRC/DONE/*.bin
 *.ilk
 bin/USBCopyNESBlueD.exe
 bin/USBCopyNESBlue.exe
+bin/copynes
+.DS_Store
+bin/PRG/*
+bin/CHR/*
+bin/NES/*
+bin/PLUGINS/*
