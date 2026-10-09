@@ -59,7 +59,8 @@ int main (int argc, char **argv)
 	if (i == (int)(sizeof cmds / sizeof *cmds))
 	{
 		fprintf(stderr, "%s\nusage: copynes <command> [answers...]\n"
-			"Answers are consumed by prompts in order; omit them to be asked interactively.\n\n", APPTITLE);
+			"Answers are consumed by prompts in order; omit them to be asked interactively.\n"
+			"[plugin] is a MAPPERS.DAT name, its .bin filename, or any .bin in PLUGINS/ (asks mapper number).\n\n", APPTITLE);
 		for (i = 0; i < (int)(sizeof cmds / sizeof *cmds); i++)
 			fprintf(stderr, "  %-10s %s\n", cmds[i].name, cmds[i].help);
 		return 2;

@@ -31,6 +31,7 @@ NES-MMC1                   sxrom.bin       1    Generic MMC1 (all types)
 NES-UxROM                  unrom.bin       2    Generic UxROM                                                            
 NES-CNROM                  cnrom.bin       3    LS161, Max 32K PRG, Max 32K CHR (banked) (bus conflicts)                 
 NES-MMC3                   txrom1.bin      4    Generic MMC3 (all types)                                                 
+NES-MMC3-256K              txrom256.bin    4    MMC3, forced 256K PRG + 256K CHR, no size detection                      
 NES-MMC5                   exrom.bin       5    Generic MMC5 (all types)                                                 
 NES-AxROM                  axrom.bin       7    Generic AxROM (all types)                                                
 MAPPER11                   cdreams.bin     11   Generic mapper 11 (Colordreams/AGCI)                                     

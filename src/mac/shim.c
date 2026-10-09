@@ -212,7 +212,7 @@ PPlugin	PromptPlugin (int Type)
 
 	while (!result)
 	{
-		if (!ask("Plugin name (? lists)", buf, sizeof buf))
+		if (!ask("Plugin name or .bin file (? lists)", buf, sizeof buf))
 			return NULL;
 		if (!strcmp(buf, "?"))
 		{
@@ -222,13 +222,23 @@ PPlugin	PromptPlugin (int Type)
 		for (i = 0; i <= numcats && !result; i++)
 			if (Plugins[i]->type == Type)
 				for (j = 0; j < Plugins[i]->listlen; j++)
-					if (!strcasecmp(Plugins[i]->list[j]->name, buf))
+					if (!strcasecmp(Plugins[i]->list[j]->name, buf) || !strcasecmp(Plugins[i]->list[j]->file, buf))
 					{
 						result = Plugins[i]->list[j];
 						break;
 					}
 		if (!result)
-			fprintf(stderr, "No plugin named '%s' in this category.\n", buf);
+		{
+			/* a .bin not listed in MAPPERS.DAT: run it as a custom plugin */
+			snprintf(filepath, sizeof filepath, "%s%s", Path_PLUG, buf);
+			if (strlen(buf) > 4 && !strcasecmp(buf + strlen(buf) - 4, ".bin") && access(filepath, F_OK) == 0)
+			{
+				strcpy(custplug.file, buf);
+				result = &custplug;
+			}
+			else
+				fprintf(stderr, "No plugin named '%s' in this category.\n", buf);
+		}
 	}
 	if (result->num != 9998)
 		return result;
@@ -248,6 +258,8 @@ PPlugin	PromptPlugin (int Type)
 			custplug.num = 9999;
 	}
 
+	if (result == &custplug)
+		return &custplug;	/* file already chosen above */
 	while (1)
 	{
 		if (!PromptFile(topHWnd,"USB CopyNES Plugins (*.bin)", filepath, custplug.file, Path_PLUG, "Select a plugin (must be in Plugins path)", "bin", FALSE))
