@@ -6,7 +6,7 @@ TARGET = ../../bin/copynes
 CFLAGS  = -O2 -Wall -Wno-unused-variable -Wno-unused-but-set-variable -Wno-parentheses -Wno-unused-function -Wno-extra-tokens -Wno-pointer-sign -fcommon -include StdAfx.h -I. $(shell pkg-config --cflags libftdi1)
 LDLIBS  = $(shell pkg-config --libs libftdi1)
 
-$(TARGET): $(SRCS) StdAfx.h
+$(TARGET): $(SRCS) StdAfx.h ../version.h ../CopyNESW.h
 	$(CC) $(CFLAGS) -o $@ $(SRCS) $(LDLIBS)
 
 clean:

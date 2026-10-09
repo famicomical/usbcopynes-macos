@@ -1,4 +1,4 @@
-name: USB CopyNES Blue Builds
+name: USB CopyNES Windows Builds
 on:
   push:
     branches: [ "master" ]
@@ -11,7 +11,7 @@ concurrency:
 
 jobs:
   build-win32:
-    name: USB CopyNES Blue Windows 32-bit
+    name: USB CopyNES Windows 32-bit
     runs-on: windows-2019
     steps:
       - name: Checkout Files
@@ -26,5 +26,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: USBCopyNESBlue-unstable--${{ env.BUILD_TAG }}
+          name: USBCopyNES-windows-unstable--${{ env.BUILD_TAG }}
           path: bin/
